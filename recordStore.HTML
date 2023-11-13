@@ -3,11 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="app">
+        <table>
+            <tbody>
+                <tr v-for="record in records">
+                    <td>
+                        {{record.id}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>        
+    </div>
     <script src="records.js">  </script>
 </body>
 </html>
