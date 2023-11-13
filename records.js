@@ -18,6 +18,17 @@ Vue.createApp({
             const response = await axios.get(url)
             console.log("Created Books")
             this.Records = await response.data
+        },
+        SortBytitle()
+        {
+            this.Records.sort((record1,record2)=>
+            record1.Title.localeCompare(record2.Title))
+        },
+        SortingByArtist()
+        {
+            this.Records.sort((record1,record2)=>
+            record1.Artist.localeCompare(record2.Artist))
         }
+
     }
 }).mount("#app") 
