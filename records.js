@@ -4,20 +4,30 @@ const baseurl="http://localhost:5166/Api/Record"
 Vue.createApp({
     data(){
         return{
-            Record:{Title:"", Artist:"", Duration:"", PublicationYear, DownLoads:""},
+            Record:{Title:"", Artist:"", Duration:"", PublicationYear:"", DownLoads:""},
             Records:[]
         }
     },
-    async GetAllRecords()
+    async created()
     {
-        this.GetAllRecords(baseurl)
+        this.AllRecords(baseurl)
+        console.log("function called")
     },
     methods:{
         async AllRecords(url)
         {
-            const response = await axios.get(url)
-            console.log("Created Books")
-            this.Records = await response.data
+            try
+            {
+                const response = await axios.get(url)
+                console.log("Created Books")
+                this.Records = await response.data
+            }
+            catch(ex)
+            {
+                alert(ex.message)
+                
+            }
+
         },
         SortBytitle()
         {
