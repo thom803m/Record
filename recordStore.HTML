@@ -9,6 +9,11 @@
 </head>
 <body>
     <div id="app">
+        <input placeholder="title" type="text" v-model="Titlesearch" v-on:keyup.enter="FilterByTitle(Titlesearch)"> 
+        <select v-model="choice" v-on:click="FilterByTitle(Titlesearch,choice)">
+            <option value="title">title</option>
+            <option value="artist">artist</option>
+        </select>
         <table>
             <tbody>
                 <tr v-for="record in Records">

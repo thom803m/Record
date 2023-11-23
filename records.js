@@ -5,7 +5,9 @@ Vue.createApp({
     data(){
         return{
             Record:{Title:"", Artist:"", Duration:"", PublicationYear:"", DownLoads:""},
-            Records:[]
+            Records:[],
+            Titlesearch:"",
+            choice:""
         }
     },
     async created()
@@ -38,6 +40,43 @@ Vue.createApp({
         {
             this.Records.sort((record1,record2)=>
             record1.Artist.localeCompare(record2.Artist))
+        },
+        async FilterByTitle(Titlesearch,choice)
+        {
+            try
+            {
+                if(choice=="title")
+                {
+                    const response = await axios.get(baseurl+"?Title=" + Titlesearch)
+                    console.log("FilterBooks",Titlesearch)
+                    this.Records = await response.data
+                }
+                else if(choice=="artist")
+                {
+                    const response = await axios.get(baseurl+"?Artist=" + Titlesearch)
+                    console.log("FilterBooks",Titlesearch)
+                    this.Records = await response.data
+                }
+            }
+            catch(ex)
+            {
+                alert(ex.message)
+                
+            }
+        },
+        async FilterByArtist(SearchArtist)
+        {
+            try
+            {
+                const response = await axios.get(baseurl+"?Title=" + SearchArtist )
+                console.log("FilterBooks",Titlesearch)
+                this.Records = await response.data
+            }
+            catch(ex)
+            {
+                alert(ex.message)
+                
+            }  
         }
 
     }
